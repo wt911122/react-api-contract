@@ -11,6 +11,7 @@ export function ConfigFactory(config) {
     pathParam,
     query,
     body,
+    response,
   } = config;
 
   function checkType(config, params, part){
@@ -33,6 +34,10 @@ export function ConfigFactory(config) {
 
   function checkBody(params){
     return checkType(body, params, 'BODY');
+  }
+
+  function checkResponse(params){
+    return checkType(response, params, 'RESPONSE');
   }
 
   function parseQuery(q) {
@@ -73,7 +78,18 @@ export function ConfigFactory(config) {
         }
         console.log(options)
 
-        return fetch(u, options);
+        return fetch(u, options)
+        .then((res) => {
+          try{
+            checkResponse(res);
+            return res;
+          }catch(e){
+            console.error(e);
+          }
+        })
+        .catch((reason) => {
+          console.error(reason);
+        });
       }catch(e){
         console.error(e);
         return Promise.resolve();

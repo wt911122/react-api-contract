@@ -14,5 +14,19 @@ export const testAPI1 = {
     age: PropTypes.number,
     entitle: PropTypes.string,
     location: PropTypes.string,
+  },
+  response: {
+    meta: PropTypes.shape({
+      code: PropTypes.number.isRequired,
+      msg: PropTypes.string.isRequired,
+    }),
+    data: PropTypes.arrayOf({
+      name: PropTypes.string.isRequired,
+      age: PropTypes.number.isRequired,
+      email: PropTypes.string.isRequired,
+      department: PropTypes.string.isRequired,
+      entitle: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+    })
   }
 }
