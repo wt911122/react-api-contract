@@ -1,0 +1,30 @@
+{
+  "name": "react-api-contract",
+  "version": "1.0.0",
+  "description": "API management for react components",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "babel-node lib/index.js",
+    "build": "babel src --out-dir lib"
+  },
+  "keywords": [
+    "api",
+    "management"
+  ],
+  "author": "onepieceofscript<onepieceofscript@163.com>",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-es2015-parameters": "^6.24.1",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-strict-mode": "^6.24.1"
+  }
+}
