@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 export function ConfigFactory(config) {
-  // todos
 
   const {
     name,      
@@ -127,9 +126,7 @@ export const combineAPI = function(apis){
       const t = ConfigFactory(p)
       combinedAPI[extractTail(p.url)] = t;
     }else{
-      console.log(p);
       combinedAPI[api] = p;
-      console.log(combinedAPI);
     }
   }
   return combinedAPI;

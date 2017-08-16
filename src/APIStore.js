@@ -42,12 +42,10 @@ export function ConfigFactory(config) {
   }
 
   function parseQuery(q) {
-    console.log(q);
     return `?${Object.keys(q).map(k => `${k}=${q[k]}`).join('&')}`;
   }
 
   function parsePathParam(a) {
-    console.log(a);
     return `/${a}`;
   }
 
@@ -91,7 +89,6 @@ export function ConfigFactory(config) {
           };
           options.body = JSON.stringify(body);
         }
-        console.log(options)
         return fetch(u, options)
           .then((res) => {
             return res.json();
@@ -108,7 +105,6 @@ export function ConfigFactory(config) {
             return data;
           })
       }catch(e){
-        console.log(e);
         return Promise.resolve();
       }
     }
@@ -127,9 +123,7 @@ export const combineAPI = function(apis){
       const t = ConfigFactory(p)
       combinedAPI[extractTail(p.url)] = t;
     }else{
-      console.log(p);
       combinedAPI[api] = p;
-      console.log(combinedAPI);
     }
   }
   return combinedAPI;

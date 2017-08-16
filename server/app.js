@@ -27,9 +27,10 @@ var users = [
   {
     id: 4,
     name: 'Puck',
-    age: 29,
+    age: '29',
     department: 'operation',
     entitle: 'COO',
+    workfor: 'money',
   },
 ]
 app.get('/', function (req, res) {

@@ -34,7 +34,6 @@ const addUserAPI = {
     department: PropTypes.string.isRequired,
     entitle: PropTypes.string.isRequired,
   },
-  response: PropTypes.string,
 }
 
 const store = combineAPI([
