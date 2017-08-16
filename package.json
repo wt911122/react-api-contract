@@ -26,5 +26,9 @@
     "babel-plugin-transform-es2015-parameters": "^6.24.1",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-plugin-transform-strict-mode": "^6.24.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wt911122/react-api-contract.git"
   }
 }

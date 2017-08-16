@@ -1,0 +1,113 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/TonyWang/Documents/My Modules/react-api-contract',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/TonyWang/.npm/react-api-contract/1.0.0/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/TonyWang/.npm correctMkdir not in flight; initializing
+10 info lifecycle react-api-contract@1.0.0~prepublish: react-api-contract@1.0.0
+11 silly lifecycle react-api-contract@1.0.0~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/TonyWang/.npm/react-api-contract/1.0.0/package.tgz',
+12 verbose tar pack   '/Users/TonyWang/Documents/My Modules/react-api-contract' ]
+13 verbose tarball /Users/TonyWang/.npm/react-api-contract/1.0.0/package.tgz
+14 verbose folder /Users/TonyWang/Documents/My Modules/react-api-contract
+15 verbose addLocalTarball adding from inside cache /Users/TonyWang/.npm/react-api-contract/1.0.0/package.tgz
+16 verbose correctMkdir /Users/TonyWang/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd react-api-contract@1.0.0
+18 verbose afterAdd /Users/TonyWang/.npm/react-api-contract/1.0.0/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/TonyWang/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/TonyWang/.npm/react-api-contract/1.0.0/package/package.json written
+21 silly publish { name: 'react-api-contract',
+21 silly publish   version: '1.0.0',
+21 silly publish   description: 'API management for react components',
+21 silly publish   main: 'lib/index.js',
+21 silly publish   scripts:
+21 silly publish    { start: 'babel-node lib/index.js',
+21 silly publish      build: 'babel src --out-dir lib' },
+21 silly publish   keywords: [ 'api', 'management' ],
+21 silly publish   author: { name: 'onepieceofscript', email: 'onepieceofscript@163.com' },
+21 silly publish   license: 'ISC',
+21 silly publish   dependencies: { babel: '^6.23.0', 'prop-types': '^15.5.10', react: '^15.6.1' },
+21 silly publish   devDependencies:
+21 silly publish    { 'babel-cli': '^6.24.1',
+21 silly publish      'babel-core': '^6.25.0',
+21 silly publish      'babel-plugin-transform-es2015-destructuring': '^6.23.0',
+21 silly publish      'babel-plugin-transform-es2015-modules-commonjs': '^6.24.1',
+21 silly publish      'babel-plugin-transform-es2015-parameters': '^6.24.1',
+21 silly publish      'babel-plugin-transform-es2015-spread': '^6.22.0',
+21 silly publish      'babel-plugin-transform-strict-mode': '^6.24.1' },
+21 silly publish   readme: '# react-api-contract\n\nIf you are tired of the strange errors that are generated when invoke other\'s API, then this is your best choice. This tool create an aspect before and after invoking API, which used to check the incoming and received parameters\' format. The check method based on prop-types of react.\n\n## Installing\n```sh\nnpm install react-api-contract\n```\n\n## Usage\n### Step1 Create API Specifications\n```javascript\nimport PropTypes from \'react-props\';\n\nconst getUserAPI = {\n  name: \'GetAllUsers\',\n  url: \'/api/getUsers\',\n  method: \'get\',\n  response: {\n    list: PropTypes.arrayOf(PropTypes.shape({\n      id: PropTypes.number.isRequired,\n      name: PropTypes.string.isRequired,\n      entitle: PropTypes.string.isRequired,\n      department:PropTypes.string.isRequired,\n      age:PropTypes.number.isRequired,\n    })),\n  }\n}\nconst addUserAPI = {\n  name: \'Add new User\',\n  url: \'/api/addUser\',\n  method: \'post\',\n  body: {\n    name: PropTypes.string.isRequired,\n    age: PropTypes.number.isRequired,\n    department: PropTypes.string.isRequired,\n    entitle: PropTypes.string.isRequired,\n  },\n  response: PropTypes.string,\n}\n```\n\n### Step2 Combine APIs to Store\n```javascript\nconst store = combineAPI([\n  getUserAPI,\n  addUserAPI,\n])\n```\n\n### Step3 Regist Store to APIProvider\n```javascript\n <APIProvider pool={store}>\n  //childrens\n </APIProvider>\n```\n\n### Step4 Connect Store with APIConnect\n```javascript\nclass ChildComp extends Component{\n  // ...\n}\n\nconst mapAPIToProps = (api) => {\n  return {\n    getUsers: api.getUsers,\n  }\n}\nAPIconnect(mapAPIToProps)(ChildComp);\n```\n\n### Step5 Call API with Props\n```javascript\nclass ChildComp extends Component{\n  // ...\n  componentDidMount() {\n    this.props.getUsers.fetch().then((data) => {\n      this.setState({\n        list: data.list,\n      })\n    })\n  }\n  // ...\n}\n```\n\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '351866fdf91b1e364cf5d7c01311acf16ac6c7f8',
+21 silly publish   _id: 'react-api-contract@1.0.0',
+21 silly publish   _shasum: '491cf9b5f49e9920613dfa0eb49be62b5266e257',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name react-api-contract
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry http://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'react-api-contract',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'react-api-contract',
+26 silly mapToRegistry   name: 'react-api-contract',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri http://registry.npmjs.org/react-api-contract
+28 verbose publish registryBase http://registry.npmjs.org/
+29 silly publish uploading /Users/TonyWang/.npm/react-api-contract/1.0.0/package.tgz
+30 verbose request uri http://registry.npmjs.org/react-api-contract
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 00:17:19
+33 verbose request using bearer token for auth
+34 verbose request id 8f665db9a376ff31
+35 http request PUT http://registry.npmjs.org/react-api-contract
+36 http 403 http://registry.npmjs.org/react-api-contract
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Wed, 16 Aug 2017 16:16:30 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-nrt6122-NRT',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1502900187.967083,VS0,VE3676',
+37 verbose headers   vary: 'Accept-Encoding, Accept' }
+38 verbose request invalidating /Users/TonyWang/.npm/registry.npmjs.org/react-api-contract on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 1.0.0." : react-api-contract
+40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+40 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1048:10)
+40 verbose stack     at emitOne (events.js:96:13)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12)
+41 verbose statusCode 403
+42 verbose pkgid react-api-contract
+43 verbose cwd /Users/TonyWang/Documents/My Modules/react-api-contract
+44 error Darwin 16.6.0
+45 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+46 error node v6.10.0
+47 error npm  v3.10.10
+48 error code E403
+49 error "You cannot publish over the previously published version 1.0.0." : react-api-contract
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
