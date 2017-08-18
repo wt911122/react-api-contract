@@ -31,6 +31,8 @@ class ChildComp extends Component {
           list: data.list,
         })
       })
+    }).catch((error) => {
+      console.log(error);
     })
   }
 

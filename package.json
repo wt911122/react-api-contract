@@ -1,6 +1,6 @@
 {
   "name": "react-api-contract",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "description": "API management for react components",
   "main": "lib/index.js",
   "scripts": {

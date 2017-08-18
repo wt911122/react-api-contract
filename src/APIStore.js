@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 export function ConfigFactory(config) {
-  // todos
 
   const {
     name,      
@@ -15,37 +14,36 @@ export function ConfigFactory(config) {
   } = config;
 
   function checkType(config, params, part){
-    try{
-      PropTypes.checkPropTypes(config, params, part, `${name}: ${extractTail(url)}`);
-    }catch(e){
-      throw {
-        part: part,
-        msg: e,
-      };
-    }
+    let error = false;
+    PropTypes.checkPropTypes(config, params, part, `${name}: ${extractTail(url)}`, () => {
+      error = true;
+    });
+    return error;
   }
 
   function checkPath(params){
-    checkType(pathParam, params, 'PATH');
+    return checkType(pathParam, params, 'PATH');
   }
 
   function checkQuery(params){
-    checkType(query, params, 'QUERY');
+    return checkType(query, params, 'QUERY');
   }
 
   function checkBody(params){
-    checkType(body, params, 'BODY');
+    return checkType(body, params, 'BODY');
   }
 
   function checkResponse(params){
-    checkType(response, params, 'RESPONSE');
+    return checkType(response, params, 'RESPONSE');
   }
 
   function parseQuery(q) {
+    console.log(q);
     return `?${Object.keys(q).map(k => `${k}=${q[k]}`).join('&')}`;
   }
 
   function parsePathParam(a) {
+    console.log(a);
     return `/${a}`;
   }
 
@@ -58,55 +56,49 @@ export function ConfigFactory(config) {
       fetchOption = {},
     } = {}) => {
 
-      // 检查参数类型 query, payload, appendant
-      try{
-
-        if(pathParam){
-          checkPath(pathParam);
-        }
-        if(query){
-          checkQuery(query);
-        }
-        if(body) {
-          checkBody(body);
-        }
-
-        const a = pathParam && parsePathParam(pathParam);
-        const q = query && parseQuery(query);
-        const b = body;
-        // 如果有query, 整理query字符串
-        const m = method.toUpperCase();
-        const u = `${url}${a?a:''}${q?q:''}`;
-
-        const options = {};
-        Object.assign(options, {
-          method: m,
-        }, fetchOption)
-        if(b){
-          options.headers = {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-          };
-          options.body = JSON.stringify(body);
-        }
-        return fetch(u, options)
-          .then((res) => {
-            return res.json();
-          })
-          .catch((reason) => {
-            console.error(reason);
-          })
-          .then((data) => {
-            try{
-              checkResponse(data);
-            }catch(e){
-              console.error(e);
-            }
-            return data;
-          })
-      }catch(e){
-        return Promise.resolve();
+    // 检查参数类型 query, payload, appendant
+      let paramError = false;
+      let queryError = false;
+      let bodyError = false;
+      if(pathParam && checkPath(pathParam)){
+        return Promise.reject(new Error('Error in path'));
       }
+      if(query && checkQuery(query)){
+        return Promise.reject(new Error('Error in query'));
+      }
+      if(body && checkBody(body)) {
+        return Promise.reject(new Error('Error in body'));
+      }
+      const a = pathParam && parsePathParam(pathParam);
+      const q = query && parseQuery(query);
+      const b = body;
+      // 如果有query, 整理query字符串
+      const m = method.toUpperCase();
+      const u = `${url}${a?a:''}${q?q:''}`;
+
+      const options = {};
+      Object.assign(options, {
+        method: m,
+      }, fetchOption)
+      if(b){
+        options.headers = {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        };
+        options.body = JSON.stringify(body);
+      }
+      return fetch(u, options)
+        .then((res) => {
+          return res.json();
+        })
+        .catch((reason) => {
+          console.error(reason);
+        })
+        .then((data) => {
+          let responseError = checkResponse(data);
+          if(responseError) {throw 'responseError!'}
+          return data;
+        })
     }
   }
 }
